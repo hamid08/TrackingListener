@@ -45,10 +45,11 @@ namespace TrackingListener.Server
 
             try
             {
-                List<Position> locations = customMessageHandler.ParseRange(messageInput)?.ToList();
+                List<Position> locations = customMessageHandler.ParseRange(messageInput)?.ToList()!;
 
                 if (locations != null && locations.Count != 0 && connectionContext.Device != null)
                 {
+                    _logger.LogInformation($"Sending... {connectionContext.Device.SerialNumber} {DateTime.Now}");
                 }
             }
             catch (Exception e)

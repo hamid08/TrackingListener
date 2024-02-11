@@ -15,6 +15,13 @@ public class ProtocolConnectionHandler : IProtocolConnectionHandler
     private readonly ILogger<ProtocolConnectionHandler> _logger;
     private readonly IProtocolMessageHandler _handler;
 
+    public ProtocolConnectionHandler(ILogger<ProtocolConnectionHandler> logger,
+        IProtocolMessageHandler handler)
+    {
+        _logger = logger;
+        _handler = handler;
+    }
+
     public async Task HandleConnection(ProtocolConnectionContext connectionContext, CancellationToken cancellationToken)
     {
         _logger.LogDebug("{Protocol}: connected {EndPoint}", connectionContext.Protocol,
